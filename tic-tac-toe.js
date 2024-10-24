@@ -6,8 +6,10 @@ const loadFunction = () => {
 
   // Add the same class to all divs
   divs.forEach((div) => {
+    //for styling purposes
     div.className = "square";
 
+    //for grid placement purposes
     div.setAttribute("data-row", row);
     div.setAttribute("data-col", col);
 
@@ -19,6 +21,15 @@ const loadFunction = () => {
       col = 0;
       row++;
     }
+
+    //for hover functionality
+    div.addEventListener("mouseover", () => {
+      div.classList.add("hover");
+    });
+
+    div.addEventListener("mouseleave", () => {
+      div.classList.remove("hover");
+    });
   });
 };
 
