@@ -42,7 +42,7 @@ const checkWin = (grid) => {
     winner = grid[0][2]; // Return the winner ("X" or "O")
   }
 
-  if(winner !== null){
+  if (winner !== null) {
     let status = document.getElementById("status");
 
     status.textContent = `Congratulations! ${winner} is the Winner!`;
@@ -98,7 +98,7 @@ window.onload = () => {
   const divs = document.querySelectorAll("#board > div");
 
   divs.forEach((element) => {
-    //click functionality
+    //click functionality for squares
     element.addEventListener("click", () => {
       if (element.textContent === "") {
         element.classList.add("X");
@@ -126,5 +126,35 @@ window.onload = () => {
 
       checkWin(grid);
     });
+  });
+
+  //click functionality for button
+  const resetButton = document.querySelector(".btn");
+  console.log(resetButton);
+
+  resetButton.addEventListener("click", () => {
+    //reset grid
+
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        grid[row][col] = "";
+      }
+    }
+
+    //reset squares
+    const divs = document.querySelectorAll("#board > div");
+
+    divs.forEach((div) => {
+      div.textContent = '';
+    })
+
+    //reset status message
+
+    let status = document.getElementById("status");
+
+    status.textContent =
+      "Move your mouse over a square and click to play an X or an O.";
+
+    status.classList.remove("you-won");
   });
 };
