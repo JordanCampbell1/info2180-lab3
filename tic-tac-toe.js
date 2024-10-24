@@ -97,18 +97,26 @@ window.onload = () => {
 
   const divs = document.querySelectorAll("#board > div");
 
+  let availableOption = "X"; //alternates when user clicks on a square
+
   divs.forEach((element) => {
     //click functionality for squares
     element.addEventListener("click", () => {
       if (element.textContent === "") {
-        element.classList.add("X");
-        element.textContent = "X"; // First click sets to "X"
-      } else {
-        element.textContent = element.textContent === "X" ? "O" : "X"; // Toggle between "X" and "O"
-
         element.classList.remove("X", "O"); // Clear previous class
-        element.classList.add(element.textContent); // Add the new class ('X' or 'O')
+
+        element.classList.add(availableOption);
+        element.textContent = availableOption; // First click sets to "X"
+
+        availableOption = availableOption === "X" ? "O" : "X";
       }
+      // else {//if square has a value
+
+      //   element.textContent = element.textContent === "X" ? "O" : "X"; // Toggle between "X" and "O"
+
+      //   element.classList.remove("X", "O"); // Clear previous class
+      //   element.classList.add(element.textContent); // Add the new class ('X' or 'O')
+      // }
 
       //update the grid array
 
@@ -130,7 +138,7 @@ window.onload = () => {
 
   //click functionality for button
   const resetButton = document.querySelector(".btn");
-  console.log(resetButton);
+  // console.log(resetButton);
 
   resetButton.addEventListener("click", () => {
     //reset grid
@@ -145,8 +153,8 @@ window.onload = () => {
     const divs = document.querySelectorAll("#board > div");
 
     divs.forEach((div) => {
-      div.textContent = '';
-    })
+      div.textContent = "";
+    });
 
     //reset status message
 
