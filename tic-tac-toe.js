@@ -1,3 +1,56 @@
+const checkWin = (grid) => {
+  const size = 3; // 3x3 grid
+  let winner = null;
+
+  // Check all rows
+  for (let row = 0; row < size; row++) {
+    if (
+      grid[row][0] !== "" &&
+      grid[row][0] === grid[row][1] &&
+      grid[row][1] === grid[row][2]
+    ) {
+      winner = grid[row][0]; // Return the winner ("X" or "O")
+    }
+  }
+
+  // Check all columns
+  for (let col = 0; col < size; col++) {
+    if (
+      grid[0][col] !== "" &&
+      grid[0][col] === grid[1][col] &&
+      grid[1][col] === grid[2][col]
+    ) {
+      winner = grid[0][col]; // Return the winner ("X" or "O")
+    }
+  }
+
+  // Check the main diagonal
+  if (
+    grid[0][0] !== "" &&
+    grid[0][0] === grid[1][1] &&
+    grid[1][1] === grid[2][2]
+  ) {
+    winner = grid[0][0]; // Return the winner ("X" or "O")
+  }
+
+  // Check the anti-diagonal
+  if (
+    grid[0][2] !== "" &&
+    grid[0][2] === grid[1][1] &&
+    grid[1][1] === grid[2][0]
+  ) {
+    winner = grid[0][2]; // Return the winner ("X" or "O")
+  }
+
+  if(winner !== null){
+    let status = document.getElementById("status");
+
+    status.textContent = `Congratulations! ${winner} is the Winner!`;
+
+    status.classList.add("you-won");
+  }
+};
+
 const loadFunction = () => {
   const divs = document.querySelectorAll("#board > div");
 
@@ -70,6 +123,8 @@ window.onload = () => {
       // console.log("this is grid vlaue :", grid[row][col]);
 
       // console.log(grid);
+
+      checkWin(grid);
     });
   });
 };
